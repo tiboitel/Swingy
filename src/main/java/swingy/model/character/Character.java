@@ -13,7 +13,10 @@ public abstract class Character {
     protected int attack;
     protected int defense;
     protected int healthpoint;
-
+    protected int combatCapacity;
+    protected int strength;
+    protected int agility;
+    protected int intelligence;
+    protected char glyph;
     public abstract void attack(Character target);
-    public abstract void equip(Artifact artifact);
 }

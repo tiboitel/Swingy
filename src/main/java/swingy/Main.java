@@ -1,11 +1,15 @@
 package swingy;
 
-import swingy.enums.EArtifact;
-import swingy.model.artifact.Artifact;
+import swingy.controller.GameController;
 
 public class Main {
 
     public static void main(String[] args) {
-        Artifact weapon = new Artifact(EArtifact.WEAPON, "Leather Helmet", 1);
+        try
+        {
+            GameController gameController = GameController.getInstance("32");
+        } catch (Exception e) {
+                 System.out.println("Oups! An error as occured " + e.getStackTrace());
+        }
     }
 }
