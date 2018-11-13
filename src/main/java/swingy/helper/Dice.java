@@ -11,7 +11,7 @@ public class Dice {
 
         for (int i = 0; i < dices; i++)
         {
-            number += rand.nextInt(faces + 1);
+            number += rand.nextInt((faces - 1)) + 1;
         }
         return (number);
     }

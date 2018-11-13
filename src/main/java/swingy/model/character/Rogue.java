@@ -3,8 +3,8 @@ package swingy.model.character;
 import swingy.helper.Dice;
 import swingy.helper.NameGenerator;
 
-public class Warrior extends Character {
-    public Warrior() {
+public class Rogue extends Character {
+    public Rogue() {
         super();
         this.name = NameGenerator.generate();
         this.setLevel(1);
@@ -18,11 +18,21 @@ public class Warrior extends Character {
 
     public String getPlayerclass()
     {
-        return "Warrior";
+        return "Rogue";
     }
 
     public void attack(Character character)
     {
 
+    }
+
+    public String toString()
+    {
+        String output = "Name: " + this.getName() +
+                        "\nCombat Capacity:" + this.getCombatCapacity() +
+                        "\nStrength: " + this.getStrength() +
+                        "\nAgility: " + this.getAgility() +
+                        "\nIntelligence:" + this.getIntelligence();
+        return (output);
     }
 }

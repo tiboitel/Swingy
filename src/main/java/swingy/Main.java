@@ -1,15 +1,29 @@
 package swingy;
 
+import swingy.controller.CharacterCreationController;
 import swingy.controller.GameController;
+import swingy.controller.CharacterCreationController;
 
 public class Main {
+
+    public static void usage()
+    {
+        System.out.println("Usage: java -jar swingy.jar [console | gui]");
+    }
 
     public static void main(String[] args) {
         try
         {
-            GameController gameController = GameController.getInstance("32");
+            /*if (args.length != 1) {
+                usage();
+                System.exit(-1);
+            }*/
+            CharacterCreationController characterCreationController = CharacterCreationController.getInstance();
+            characterCreationController.CreateNewCharacter(2);
+            GameController gameController = GameController.getInstance();
+
         } catch (Exception e) {
-                 System.out.println("Oups! An error as occured " + e.getStackTrace());
+                 System.out.println("Oups! An error as occured " + e.getMessage());
         }
     }
 }
