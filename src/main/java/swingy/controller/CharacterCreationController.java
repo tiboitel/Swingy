@@ -22,4 +22,9 @@ public class CharacterCreationController {
         player.toString();
     }
 
+    public void LoadLastPlayedCharacter()
+    {
+
+    }
+
 }

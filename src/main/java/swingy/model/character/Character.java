@@ -1,6 +1,7 @@
 package swingy.model.character;
 
 import swingy.model.AbstractModel;
+import swingy.model.IObservable;
 import swingy.model.artifact.Artifact;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
-public abstract class Character extends AbstractModel {
+public abstract class Character extends AbstractModel implements IObservable {
     protected String name;
     protected int level;
     protected int experience;
@@ -41,5 +42,10 @@ public abstract class Character extends AbstractModel {
                         "\nAgility: " + this.getAgility() +
                         "\nIntelligence:" + this.getIntelligence();
         return (output);
+    }
+
+    public void save()
+    {
+
     }
 }

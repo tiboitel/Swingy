@@ -11,6 +11,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 
 @Getter
@@ -25,7 +27,7 @@ public class GameUI extends JFrame {
     private JLabel characterAgility;
     private JLabel characterExperience;
     private JLabel characterLevel;
-    private JComboBox comboBox1;
+    private JComboBox characterDirection;
     private JButton moveButton;
     private JButton fightButton;
     private JTextPane mapViewer;
@@ -41,21 +43,20 @@ public class GameUI extends JFrame {
 
     public void update(Character character)
     {
-        characterName.setText(characterName.getText() + character.getName());
-        characterClass.setText(characterClass.getText() + character.getPlayerclass());
+        characterName.setText("Name: " + character.getName());
+        characterClass.setText("Class:" + character.getPlayerclass());
         characterLevel.setText("Level: " + character.getLevel());
         characterExperience.setText("Experience: " + character.getExperience());
-        characterCombatCapacity.setText(characterCombatCapacity.getText() + character.getCombatCapacity());
-        characterStrength.setText(characterStrength.getText() + character.getStrength());
-        characterIntelligence.setText(characterIntelligence.getText() + character.getIntelligence());
-        characterAgility.setText(characterAgility.getText() + character.getAgility());
+        characterCombatCapacity.setText("Combat Capacity: " + character.getCombatCapacity());
+        characterStrength.setText("Strength: " + character.getStrength());
+        characterIntelligence.setText("Intelligence: " + character.getIntelligence());
+        characterAgility.setText("Agility: " + character.getAgility());
     }
 
-    public void update(SquareMap map)
-    {
+    public void update(SquareMap map) {
         String render = map.toString();
         String padding;
-        int numberLines = (int)(render.chars().filter(x -> x == '\n').count() + 1);
+        int numberLines = (int) (render.chars().filter(x -> x == '\n').count() + 1);
         JTextPane mapViewer = getMapViewer();
         int rows = mapViewer.getHeight() / 10;
 
@@ -67,5 +68,5 @@ public class GameUI extends JFrame {
         padding = new String(new char[((rows / 2) - (numberLines / 2)) / 2]).replace('\0', '\n');
         render = padding + render;
         mapViewer.setText(render);
-     }
+    }
 }

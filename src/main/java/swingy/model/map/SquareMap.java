@@ -3,14 +3,18 @@ package swingy.model.map;
 import lombok.Getter;
 import lombok.Setter;
 import swingy.model.AbstractModel;
+import swingy.model.IObservable;
 import swingy.model.character.Character;
+import swingy.model.character.Monster;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class SquareMap extends AbstractModel
 {
     private char[][] cells;
     private Character player;
+    private LinkedList<Monster> monsters;
 
     public SquareMap(int mapSize)
     {
@@ -38,6 +42,7 @@ public class SquareMap extends AbstractModel
     {
         this.player = player;
     }
+    public void setMonsters(LinkedList<Monster> monsters) { this.monsters = monsters; }
 
     public void notification()
     {
