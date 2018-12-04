@@ -31,6 +31,8 @@ public class GameUI extends JFrame {
     private JButton moveButton;
     private JButton fightButton;
     private JTextPane mapViewer;
+    private JTextPane chatTextPane;
+    private JButton runButton;
 
     public GameUI()
     {
@@ -64,7 +66,6 @@ public class GameUI extends JFrame {
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         document.setParagraphAttributes(0, document.getLength(), center, false);
-        System.out.println("Rows: " + rows + ", NumberLines: " + numberLines);
         padding = new String(new char[((rows / 2) - (numberLines / 2)) / 2]).replace('\0', '\n');
         render = padding + render;
         mapViewer.setText(render);

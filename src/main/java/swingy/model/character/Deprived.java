@@ -22,11 +22,6 @@ public class Deprived extends Character {
         return "Deprived";
     }
 
-    public void attack(Character character)
-    {
-
-    }
-
     public String toString()
     {
         String output = "Name: " + this.getName() +

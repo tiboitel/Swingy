@@ -21,11 +21,6 @@ public class Wizard extends Character {
         return "Wizard";
     }
 
-    public void attack(Character character)
-    {
-
-    }
-
     public String toString()
     {
         String output = "Name: " + this.getName() +

@@ -9,25 +9,22 @@ import swingy.model.artifact.Artifact;
 public class Monster extends Character {
     public Monster() {
         super();
-        this.name = NameGenerator.generate();
+        this.name = "Goblin";
         this.setLevel(1);
         this.setHealthpoint(Dice.roll(1, 8));
         this.setCombatCapacity(Dice.roll(4, 6));
-        this.setStrength(10 + Dice.roll(3, 10));
-        this.setAgility(10 + Dice.roll(2, 10));
-        this.setIntelligence(10 + Dice.roll(2, 10));
+        this.setStrength((this.level * 10) + Dice.roll(3, 10));
+        this.setAgility((this.level * 10) + Dice.roll(2, 10));
+        this.setIntelligence((this.level * 10) + Dice.roll(2, 10));
         this.setAttack(1);
+        this.setPosition_y(0);
+        this.setPosition_x(0);
         this.setGlyph('G');
     }
 
     public String getPlayerclass()
     {
         return "Monster";
-    }
-
-    public void attack(Character character)
-    {
-
     }
 
     public Artifact drop()

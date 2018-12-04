@@ -36,6 +36,9 @@ public class CharacterFactory {
                 player = new Rogue();
                 break;
             default:
+                inventory.add(ArtifactFactory.newArtifact(EArtifact.HELM, "Dark Hood", 1));
+                inventory.add(ArtifactFactory.newArtifact(EArtifact.ARMOR, "Leather Armour", 1));
+                inventory.add(ArtifactFactory.newArtifact(EArtifact.WEAPON, "Mercenary Sword", 1));
                 player = new Deprived();
                 break;
         }

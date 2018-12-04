@@ -20,9 +20,4 @@ public class Warrior extends Character {
     {
         return "Warrior";
     }
-
-    public void attack(Character character)
-    {
-
-    }
 }

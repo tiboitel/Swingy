@@ -10,6 +10,8 @@ import swingy.model.character.Monster;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+@Getter
+@Setter
 public class SquareMap extends AbstractModel
 {
     private char[][] cells;
@@ -27,7 +29,15 @@ public class SquareMap extends AbstractModel
     {
         String output = "";
 
-        cells[player.getPosition_x()][player.getPosition_y()] = player.getGlyph();
+        // Fills the array with empty dot. Aka, cells.
+        for (int i = 0; i < cells.length; i++)
+            Arrays.fill(cells[i], '.');
+        // Set player and monster glyph on the map.
+        cells[player.getPosition_y()][player.getPosition_x()] = player.getGlyph();
+        System.out.println((monsters.size()));
+        for (Monster monster : monsters) {
+            cells[monster.getPosition_y()][monster.getPosition_x()] = monster.getGlyph();
+        }
         for (int i = 0; i < cells.length; i++)
         {
             for (int j = 0; j < cells[i].length; j++) {
@@ -37,12 +47,6 @@ public class SquareMap extends AbstractModel
         }
         return output;
     }
-
-    public void setPlayer(Character player)
-    {
-        this.player = player;
-    }
-    public void setMonsters(LinkedList<Monster> monsters) { this.monsters = monsters; }
 
     public void notification()
     {
