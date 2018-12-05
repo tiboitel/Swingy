@@ -62,6 +62,6 @@ public abstract class Character extends AbstractModel implements IObservable {
 
     public void save()
     {
-
+        // If you need to use SQLLite you need to see Doc.
     }
 }
