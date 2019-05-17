@@ -68,15 +68,26 @@ public class GameController {
 
         player.setPosition_x(mapRadius / 2);
         player.setPosition_y(mapRadius / 2);
-
         monsters.clear();
+
         Monster goblin = new Monster();
+        Monster hydra = new Monster();
+
         goblin.setPosition_x(2);
         goblin.setPosition_y(2);
-        monsters.add(goblin);
+        hydra.setPosition_x(mapRadius / 2);
+        hydra.setPosition_y(2);
+        hydra.setName("Hydra");
+        hydra.setGlyph('H');
+        hydra.setHealthpoint(Dice.roll(8, 4));
+        hydra.setLevel(3);
+        hydra.updateStats();
 
+        monsters.add(goblin);
+        monsters.add(hydra);
         map.setPlayer(player);
         map.setMonsters(monsters);
+
         if (gameUI != null)
         {
             map.register(gameUI);
@@ -111,6 +122,8 @@ public class GameController {
             if (monster.getPosition_x() == player.getPosition_x() &&
                     monster.getPosition_y() == player.getPosition_y())
             {
+                logger.log("You have encounter an ennemy ! [" + monster.getName() + "] [B: " + monster.getHealthpoint() +
+                        ", A: " + monster.getAttack() + ", CC:" + monster.getCombatCapacity() + "]");
                 gameUI.getMoveButton().setEnabled(false);
                 gameUI.getFightButton().setEnabled(true);
                 gameUI.getRunButton().setEnabled(true);
@@ -133,36 +146,47 @@ public class GameController {
         {
             if (monster.getPosition_x() == player.getPosition_x() &&
                 monster.getPosition_y() == player.getPosition_y())
-                ennemy = monster;
+                 ennemy = monster;
         }
+
         if (ennemy == null)
             return ;
-        while (player.getHealthpoint() > 0 && ennemy.getHealthpoint() > 0) {
+
+        while (player.getHealthpoint() > 0 && ennemy.getHealthpoint() > 0)
+        {
             damage = player.attack(ennemy);
             if (damage > 0)
                 logger.log("You have inflicted " + damage + " damage to " + ennemy.getName());
             else
                 logger.log(ennemy.getName() + " have dodge the attack !");
-            if (ennemy.getHealthpoint() > 0)
-            {
-                damage = ennemy.attack(player);
-                if (damage > 0)
-                    logger.log(ennemy.getName() + " hit you for " + damage + " damage.");
-                else
-                    logger.log("You have dodged the ennemy  attack !");
-            }
+
+            damage = ennemy.attack(player);
+            if (damage > 0)
+                logger.log(ennemy.getName() + " hit you for " + damage + " damage.");
+            else
+                logger.log("You have dodged the ennemy  attack !");
         }
-        if (ennemy.getHealthpoint() < 0) {
+
+        if (ennemy.getHealthpoint() <= 0) {
             gameUI.getMoveButton().setEnabled(true);
             gameUI.getFightButton().setEnabled(false);
             gameUI.getRunButton().setEnabled(false);
             for (int i = 0; i < monsters.size(); i++) {
                 if (monsters.get(i).getPosition_x() == player.getPosition_x() &&
                         monsters.get(i).getPosition_y() == player.getPosition_y()) {
-                    player.setExperience(player.getExperience() + monsters.get(i).getLevel() * 100);
+                    player.setExperience(player.getExperience() + monsters.get(i).getLevel() * 80);
                     monsters.remove(i);
+                    gameUI.update(player);
                 }
             }
+        }
+
+        if (player.getHealthpoint() <= 0) {
+            logger.log("You died.");
+            this.generateLevel();
+            player = CharacterFactory.newCharacter(ECharacterClass.DEPRIVED);
+            gameUI.update(player);
+            gameUI.getMoveButton().setEnabled(true);
         }
         map.notification();
     }
@@ -170,7 +194,7 @@ public class GameController {
     private void playerRun()
     {
         int canRun = Dice.roll(1, 3);
-        logger.log("[DEBUG] CanRun: " + canRun);
+
         if (canRun == 1)
         {
             player.setPosition_x(player.getPreviousPositionX());

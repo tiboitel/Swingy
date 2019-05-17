@@ -3,7 +3,6 @@ package swingy.model.character;
 import swingy.enums.EArtifact;
 import swingy.helper.ArtifactFactory;
 import swingy.helper.Dice;
-import swingy.helper.NameGenerator;
 import swingy.model.artifact.Artifact;
 
 public class Monster extends Character {
@@ -36,6 +35,14 @@ public class Monster extends Character {
         return null;
     }
 
+    public void updateStats()
+    {
+        this.setCombatCapacity((this.level * 10) + Dice.roll(4, 6));
+        this.setStrength((this.level * 10) + Dice.roll(3, 10));
+        this.setAgility((this.level * 10) + Dice.roll(2, 10));
+        this.setIntelligence((this.level * 10) + Dice.roll(2, 10));
+        this.setAttack(this.level);
+    }
     public String toString()
     {
         String output = "Name: " + this.getName() +

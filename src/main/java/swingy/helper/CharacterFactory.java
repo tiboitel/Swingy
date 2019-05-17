@@ -3,8 +3,8 @@ package swingy.helper;
 import swingy.enums.EArtifact;
 import swingy.enums.ECharacterClass;
 import swingy.model.artifact.Artifact;
-import swingy.model.character.*;
 import swingy.model.character.Character;
+import swingy.model.character.*;
 
 import java.util.ArrayList;
 

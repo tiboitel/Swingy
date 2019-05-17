@@ -1,11 +1,11 @@
 package swingy.model.character;
 
+import lombok.Getter;
+import lombok.Setter;
 import swingy.helper.Dice;
 import swingy.model.AbstractModel;
 import swingy.model.IObservable;
 import swingy.model.artifact.Artifact;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,8 @@ public abstract class Character extends AbstractModel implements IObservable {
         for (int i = 0; i < this.getAttack(); i++) {
             hit = Dice.roll(1, 100);
             if (hit < this.getCombatCapacity()) {
-                damage += Dice.roll(1, this.getEquipment().get(2).getBonus() + 1);
+                if (this.getEquipment() != null)
+                    damage += Dice.roll(1, this.getEquipment().get(2).getBonus() + 1);
                 damage += Math.round(this.getStrength() / 10);
             }
         }

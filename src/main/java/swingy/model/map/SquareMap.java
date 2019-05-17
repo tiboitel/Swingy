@@ -3,7 +3,6 @@ package swingy.model.map;
 import lombok.Getter;
 import lombok.Setter;
 import swingy.model.AbstractModel;
-import swingy.model.IObservable;
 import swingy.model.character.Character;
 import swingy.model.character.Monster;
 

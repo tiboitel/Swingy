@@ -2,7 +2,6 @@ package swingy;
 
 import swingy.controller.CharacterCreationController;
 import swingy.controller.GameController;
-import swingy.controller.CharacterCreationController;
 
 public class Main {
 
